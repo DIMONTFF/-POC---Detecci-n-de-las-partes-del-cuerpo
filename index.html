@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam con Teachable Machine</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <h1>Vista de la Webcam</h1>
+    <div class="container">
+        <video id="video" autoplay></video>
+        <img id="capturedImage" alt="Imagen capturada">
+    </div>
+    <div id="timer">3</div>
+    <div id="prediction">Predicción: -</div>
+    <div id="controls">
+        <button id="button">Capturar</button>
+        <input type="range" id="slider" min="0" max="100" value="0">
+    </div>
+
+    <!-- Cargar TensorFlow -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
+    <!-- Enlazamos los archivos JS -->
+    <script src="vista.js"></script>
+    <script src="controlador.js"></script>
+    <script src="modelo.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const modelo = new Modelo();
+            const vista = new Vista();
+            const controlador = new Controlador(modelo,vista);
+        });
+    </script>
+</body>
+</html>
+
+
+
